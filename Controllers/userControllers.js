@@ -22,10 +22,10 @@ exports.register = async (req, res) => {
       return res.status(400).json({ error: "Required fields missing" });
     }
 
-    // const user = await userModel.findOne({ email });
-    // if (user) {
-    //   return res.status(409).json({ message: "User already exists" });
-    // }
+    const user = await userModel.findOne({ email });
+    if (user) {
+      return res.status(409).json({ message: "User already exists" });
+    }
     // const hashPassword = await bcrypt.hash(password, 10);
     const newUser = new userModel({
       fullname,
@@ -60,7 +60,7 @@ exports.register = async (req, res) => {
       },
     });
     var mailOptions = {
-      from: "noreply-axseva@axseva.com",
+      from: "info@axseva.com",
       to: email,
       subject:
         "Welcome to AxSeva F & O!!! 🎉 🎉. Thank you for contacting us",
